@@ -1,4 +1,4 @@
-name: Fetch GDRE Tools
+name: Fetch Android Build Tools
 
 on:
   push:
@@ -11,15 +11,20 @@ jobs:
   fetch:
     runs-on: ubuntu-latest
     steps:
-      - name: Download GDRE Tools
+      - name: Package Android build tools
+        shell: bash
         run: |
           set -euo pipefail
-          curl -L --fail --retry 3 -o GDRE_tools-v2.6.4-linux.zip https://github.com/GDRETools/gdsdecomp/releases/download/v2.6.4/GDRE_tools-v2.6.4-linux.zip
-          sha256sum GDRE_tools-v2.6.4-linux.zip
-      - name: Upload tool archive
+          SDK_ROOT="${ANDROID_SDK_ROOT:-${ANDROID_HOME:-/usr/local/lib/android/sdk}}"
+          TOOLS_DIR="$(find "$SDK_ROOT/build-tools" -mindepth 1 -maxdepth 1 -type d | sort -V | tail -1)"
+          test -x "$TOOLS_DIR/apksigner"
+          test -x "$TOOLS_DIR/zipalign"
+          echo "Using $TOOLS_DIR"
+          tar -C "$(dirname "$TOOLS_DIR")" -czf android-build-tools.tgz "$(basename "$TOOLS_DIR")"
+      - name: Upload Android tools
         uses: actions/upload-artifact@v4
         with:
-          name: gdre-tools-linux
-          path: GDRE_tools-v2.6.4-linux.zip
+          name: android-build-tools
+          path: android-build-tools.tgz
           compression-level: 0
           retention-days: 1
