@@ -1,0 +1,42 @@
+name: Unpack VOIDFORGE source
+
+on:
+  push:
+    branches:
+      - feature/intuitive-building-planets
+    paths:
+      - '.github/workflows/unpack-source.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  unpack:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout feature branch
+        uses: actions/checkout@v4
+        with:
+          ref: feature/intuitive-building-planets
+          fetch-depth: 0
+      - name: Unpack archived Godot project
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf source
+          mkdir -p source
+          unzip -q voidforge_stage31_source.zip -d source
+          find source -maxdepth 3 -type f | sort | head -80
+      - name: Commit unpacked project
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'VOIDFORGE Build Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add source
+          if git diff --cached --quiet; then
+            echo 'Nothing to commit.'
+            exit 0
+          fi
+          git commit -m 'Unpack source for feature work [skip ci]'
+          git push origin HEAD:feature/intuitive-building-planets
