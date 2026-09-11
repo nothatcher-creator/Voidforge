@@ -1,0 +1,25 @@
+name: Fetch GDRE Tools
+
+on:
+  push:
+    branches:
+      - feature/intuitive-building-planets
+    paths:
+      - '.github/workflows/fetch-gdre.yml'
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download GDRE Tools
+        run: |
+          set -euo pipefail
+          curl -L --fail --retry 3 -o GDRE_tools-v2.6.4-linux.zip https://github.com/GDRETools/gdsdecomp/releases/download/v2.6.4/GDRE_tools-v2.6.4-linux.zip
+          sha256sum GDRE_tools-v2.6.4-linux.zip
+      - name: Upload tool archive
+        uses: actions/upload-artifact@v4
+        with:
+          name: gdre-tools-linux
+          path: GDRE_tools-v2.6.4-linux.zip
+          compression-level: 0
+          retention-days: 1
