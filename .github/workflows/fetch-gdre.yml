@@ -1,4 +1,4 @@
-name: Fetch Android Build Tools
+name: Fetch Godot 4.7.2 Linux
 
 on:
   push:
@@ -11,20 +11,17 @@ jobs:
   fetch:
     runs-on: ubuntu-latest
     steps:
-      - name: Package Android build tools
+      - name: Download Godot 4.7.2
         shell: bash
         run: |
           set -euo pipefail
-          SDK_ROOT="${ANDROID_SDK_ROOT:-${ANDROID_HOME:-/usr/local/lib/android/sdk}}"
-          TOOLS_DIR="$(find "$SDK_ROOT/build-tools" -mindepth 1 -maxdepth 1 -type d | sort -V | tail -1)"
-          test -x "$TOOLS_DIR/apksigner"
-          test -x "$TOOLS_DIR/zipalign"
-          echo "Using $TOOLS_DIR"
-          tar -C "$(dirname "$TOOLS_DIR")" -czf android-build-tools.tgz "$(basename "$TOOLS_DIR")"
-      - name: Upload Android tools
+          url='https://github.com/godotengine/godot-builds/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip'
+          curl -fL --retry 3 -o godot.zip "$url"
+          echo 'cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4  godot.zip' | sha256sum -c -
+      - name: Upload Godot
         uses: actions/upload-artifact@v4
         with:
-          name: android-build-tools
-          path: android-build-tools.tgz
+          name: godot-4.7.2-linux
+          path: godot.zip
           compression-level: 0
           retention-days: 1
