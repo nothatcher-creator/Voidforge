@@ -1,4 +1,4 @@
-name: Unpack VOIDFORGE source
+name: VOIDFORGE Recovery Support
 
 on:
   push:
@@ -7,36 +7,20 @@ on:
     paths:
       - '.github/workflows/unpack-source.yml'
 
-permissions:
-  contents: write
-
 jobs:
-  unpack:
+  stage-gdre:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout feature branch
-        uses: actions/checkout@v4
+      - name: Download GDRE Tools
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -L --fail --retry 3 -o GDRE_tools-v2.6.4-linux.zip https://github.com/GDRETools/gdsdecomp/releases/download/v2.6.4/GDRE_tools-v2.6.4-linux.zip
+          sha256sum GDRE_tools-v2.6.4-linux.zip
+      - name: Upload GDRE archive
+        uses: actions/upload-artifact@v4
         with:
-          ref: feature/intuitive-building-planets
-          fetch-depth: 0
-      - name: Unpack archived Godot project
-        shell: bash
-        run: |
-          set -euo pipefail
-          rm -rf source
-          mkdir -p source
-          unzip -q voidforge_stage31_source.zip -d source
-          find source -maxdepth 3 -type f | sort | head -80
-      - name: Commit unpacked project
-        shell: bash
-        run: |
-          set -euo pipefail
-          git config user.name 'VOIDFORGE Build Bot'
-          git config user.email 'actions@users.noreply.github.com'
-          git add source
-          if git diff --cached --quiet; then
-            echo 'Nothing to commit.'
-            exit 0
-          fi
-          git commit -m 'Unpack source for feature work [skip ci]'
-          git push origin HEAD:feature/intuitive-building-planets
+          name: gdre-tools-linux
+          path: GDRE_tools-v2.6.4-linux.zip
+          compression-level: 0
+          retention-days: 1
