@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="BlockDefinition" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/blocks/block_definition.gd" id="1_block"]
+[ext_resource type="Script" path="res://scripts/blocks/block_cost_entry.gd" id="2_cost"]
+
+[sub_resource type="Resource" id="Cost1"]
+script = ExtResource("2_cost")
+item_id = &"component_structural_plate"
+quantity = 2
+
+[sub_resource type="Resource" id="Cost2"]
+script = ExtResource("2_cost")
+item_id = &"component_machine_frame"
+quantity = 1
+
+[resource]
+script = ExtResource("1_block")
+id = &"frame_spar_small"
+display_name = "Spar Frame S"
+description = "A narrow small-grid skeleton member for lightweight drones, compact rovers, and exposed machinery."
+category = &"structure"
+tags = Array[StringName]([&"production", &"structural", &"frame", &"small_grid", &"lightweight"])
+allowed_grid_sizes = Array[StringName]([&"small"])
+dimensions_cells = Vector3i(1, 1, 1)
+attachment_faces_mask = 63
+build_cost = Array[Resource]([SubResource("Cost1"), SubResource("Cost2")])
+construction_stages = 2
+mass_kg = 12.0
+max_integrity = 55.0
+material_id = &"industrial_alloy"
+functional_type = &"structural"
+variant_group = &"frame_family"
+variant_key = &"spar_small"
+variant_order = 10
+presentation_shape = &"frame"
+presentation_scale = Vector3(0.07, 0.07, 0.07)
+presentation_offset_cells = Vector3(0.0, 0.0, 0.0)
+presentation_material_id = &"structure_frame"

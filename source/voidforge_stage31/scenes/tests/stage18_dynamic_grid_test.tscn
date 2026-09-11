@@ -1,0 +1,20 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/world/stage18_dynamic_grid_test.gd" id="1_test"]
+[ext_resource type="PackedScene" path="res://scenes/tests/stage17_grid_collision_test.tscn" id="2_stage17"]
+[ext_resource type="Script" path="res://scripts/grids/block_grid.gd" id="3_grid"]
+[ext_resource type="Script" path="res://scripts/grids/block_grid_presenter.gd" id="4_presenter"]
+[ext_resource type="Resource" path="res://data/grids/large_grid_profile.tres" id="5_large"]
+
+[node name="Stage18DynamicGridTest" type="Node3D"]
+script = ExtResource("1_test")
+
+[node name="Stage17GridCollisionTest" parent="." instance=ExtResource("2_stage17")]
+
+[node name="DynamicGrid" type="RigidBody3D" parent="."]
+position = Vector3(14, 7, -22)
+script = ExtResource("3_grid")
+grid_profile = ExtResource("5_large")
+
+[node name="BlockPresenter" type="Node3D" parent="DynamicGrid"]
+script = ExtResource("4_presenter")

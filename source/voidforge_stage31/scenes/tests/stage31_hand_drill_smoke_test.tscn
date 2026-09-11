@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://tests/stage31_hand_drill_smoke_test.gd" id="1_test"]
+[ext_resource type="PackedScene" path="res://scenes/tests/stage31_hand_drill_test.tscn" id="2_world"]
+
+[node name="Stage31HandDrillSmokeTest" type="Node"]
+script = ExtResource("1_test")
+
+[node name="Stage31HandDrill" parent="." instance=ExtResource("2_world")]

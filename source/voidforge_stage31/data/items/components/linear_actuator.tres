@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemDefinition" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/inventory/item_definition.gd" id="1_item"]
+
+[resource]
+script = ExtResource("1_item")
+id = &"component_linear_actuator"
+display_name = "Linear Actuator"
+description = "Precision force actuator for machinery, tools, and future mechanical subgrids."
+category = &"component"
+tags = Array[StringName]([&"component", &"mechanical", &"motion"])
+unit_mass_kg = 2.8000
+unit_volume_l = 1.1000
+stack_limit = 100

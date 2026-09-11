@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/interaction/test_interactable.gd" id="1_target"]
+[ext_resource type="Script" path="res://scripts/interaction/interaction_component.gd" id="2_interaction"]
+[ext_resource type="Material" path="res://assets/materials/dev_structure_material.tres" id="3_structure"]
+[ext_resource type="Material" path="res://assets/materials/dev_accent_material.tres" id="4_accent"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_target"]
+material = ExtResource("3_structure")
+size = Vector3(1.2, 1.8, 0.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape_target"]
+size = Vector3(1.2, 1.8, 0.7)
+
+[node name="TestInteractable" type="StaticBody3D"]
+collision_layer = 9
+collision_mask = 63
+script = ExtResource("1_target")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_target")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape_target")
+
+[node name="AccentStrip" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.25, -0.36)
+mesh = SubResource("BoxMesh_target")
+scale = Vector3(0.45, 0.08, 0.03)
+material_override = ExtResource("4_accent")
+
+[node name="StatusLabel" type="Label3D" parent="."]
+position = Vector3(0, 1.25, 0)
+billboard = 1
+text = "RELAY: OFF"
+font_size = 32
+outline_size = 8
+
+[node name="Interaction" type="Node" parent="."]
+script = ExtResource("2_interaction")
+prompt_text = "Enable test relay"

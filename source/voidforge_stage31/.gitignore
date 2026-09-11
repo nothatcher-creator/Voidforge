@@ -1,0 +1,9 @@
+.godot/
+*.tmp
+*.log
+builds/android/*.apk
+builds/android/*.aab
+android/build/
+
+__pycache__/
+*.pyc

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemDefinition" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/inventory/item_definition.gd" id="1_item"]
+
+[resource]
+script = ExtResource("1_item")
+id = &"component_drive_motor"
+display_name = "Drive Motor"
+description = "Compact electromechanical motor assembly for moving machinery."
+category = &"component"
+tags = Array[StringName]([&"component", &"mechanical", &"electrical", &"starter"])
+unit_mass_kg = 4.5000
+unit_volume_l = 1.8000
+stack_limit = 80

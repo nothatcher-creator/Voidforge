@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="BlockDefinition" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/blocks/block_definition.gd" id="1_block"]
+[ext_resource type="Script" path="res://scripts/blocks/block_cost_entry.gd" id="2_cost"]
+
+[sub_resource type="Resource" id="Cost1"]
+script = ExtResource("2_cost")
+item_id = &"component_power_cell"
+quantity = 12
+
+[sub_resource type="Resource" id="Cost2"]
+script = ExtResource("2_cost")
+item_id = &"component_conductive_wire"
+quantity = 10
+
+[sub_resource type="Resource" id="Cost3"]
+script = ExtResource("2_cost")
+item_id = &"component_machine_frame"
+quantity = 4
+
+[sub_resource type="Resource" id="Cost4"]
+script = ExtResource("2_cost")
+item_id = &"component_logic_core"
+quantity = 2
+
+[resource]
+script = ExtResource("1_block")
+id = &"flux_reservoir_large"
+display_name = "Flux Reservoir L"
+description = "A large-grid rechargeable electrical reservoir that buffers generator surplus and supplies high transient loads when active generation falls short."
+category = &"power"
+tags = Array[StringName]([&"production", &"power", &"battery", &"storage", &"large_grid"])
+allowed_grid_sizes = Array[StringName]([&"large"])
+dimensions_cells = Vector3i(1, 1, 1)
+attachment_faces_mask = 63
+build_cost = Array[Resource]([SubResource("Cost1"), SubResource("Cost2"), SubResource("Cost3"), SubResource("Cost4")])
+construction_stages = 5
+mass_kg = 680.0
+max_integrity = 520.0
+material_id = &"industrial_alloy"
+functional_type = &"battery"
+enabled_by_default = true
+power_use_kw = 0.0
+power_production_kw = 0.0
+battery_capacity_kwh = 60.0
+battery_initial_charge_fraction = 0.5
+battery_max_charge_kw = 180.0
+battery_max_discharge_kw = 240.0
+variant_group = &"battery_family"
+variant_key = &"flux_reservoir_large"
+variant_order = 10
+presentation_shape = &"battery"
+presentation_scale = Vector3(0.9, 0.9, 0.9)
+presentation_offset_cells = Vector3(0, 0, 0)
+presentation_material_id = &"power_storage"

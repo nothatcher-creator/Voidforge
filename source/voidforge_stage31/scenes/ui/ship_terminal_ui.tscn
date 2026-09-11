@@ -1,0 +1,355 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/ship_terminal_ui.gd" id="1_terminal"]
+
+[sub_resource type="StyleBoxFlat" id="StyleDim"]
+bg_color = Color(0.005, 0.009, 0.014, 0.92)
+
+[sub_resource type="StyleBoxFlat" id="StyleTerminal"]
+bg_color = Color(0.025, 0.045, 0.058, 0.98)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.16, 0.82, 0.9, 0.78)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleDiag"]
+bg_color = Color(0.035, 0.075, 0.09, 0.88)
+border_width_bottom = 1
+border_color = Color(0.16, 0.72, 0.78, 0.55)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StylePanel"]
+bg_color = Color(0.018, 0.03, 0.041, 0.94)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.12, 0.35, 0.42, 0.78)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleClose"]
+bg_color = Color(0.32, 0.08, 0.07, 0.92)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.35, 0.24, 0.8)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleSearch"]
+bg_color = Color(0.012, 0.022, 0.03, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.16, 0.62, 0.7, 0.62)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="ShipTerminalUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+script = ExtResource("1_terminal")
+
+[node name="Dimmer" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleDim")
+
+[node name="TerminalPanel" type="Panel" parent="Dimmer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.035
+anchor_top = 0.045
+anchor_right = 0.965
+anchor_bottom = 0.955
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleTerminal")
+
+[node name="Margin" type="MarginContainer" parent="Dimmer/TerminalPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 12
+
+[node name="VBox" type="VBoxContainer" parent="Dimmer/TerminalPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Header" type="HBoxContainer" parent="Dimmer/TerminalPanel/Margin/VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 50)
+
+[node name="Title" type="Label" parent="Dimmer/TerminalPanel/Margin/VBox/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.58, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "VOIDFORGE SHIP TERMINAL"
+vertical_alignment = 1
+
+[node name="CloseButton" type="Button" parent="Dimmer/TerminalPanel/Margin/VBox/Header"]
+custom_minimum_size = Vector2(118, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleClose")
+text = "CLOSE"
+
+[node name="Diagnostics" type="VBoxContainer" parent="Dimmer/TerminalPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="GridSummary" type="Label" parent="Dimmer/TerminalPanel/Margin/VBox/Diagnostics"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleDiag")
+theme_override_colors/font_color = Color(0.75, 0.92, 0.95, 1)
+theme_override_font_sizes/font_size = 15
+text = "GRID  NO TARGET"
+
+[node name="PowerSummary" type="Label" parent="Dimmer/TerminalPanel/Margin/VBox/Diagnostics"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleDiag")
+theme_override_colors/font_color = Color(0.64, 1, 0.78, 1)
+theme_override_font_sizes/font_size = 15
+text = "POWER  NO GRID CONNECTED"
+
+[node name="BatterySummary" type="Label" parent="Dimmer/TerminalPanel/Margin/VBox/Diagnostics"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleDiag")
+theme_override_colors/font_color = Color(0.75, 0.82, 1, 1)
+theme_override_font_sizes/font_size = 15
+text = "BATTERY  --"
+
+[node name="Body" type="HBoxContainer" parent="Dimmer/TerminalPanel/Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="CategoryPanel" type="PanelContainer" parent="Dimmer/TerminalPanel/Margin/VBox/Body"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StylePanel")
+
+[node name="CategoryMargin" type="MarginContainer" parent="Dimmer/TerminalPanel/Margin/VBox/Body/CategoryPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="CategoryScroll" type="ScrollContainer" parent="Dimmer/TerminalPanel/Margin/VBox/Body/CategoryPanel/CategoryMargin"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="CategoryList" type="VBoxContainer" parent="Dimmer/TerminalPanel/Margin/VBox/Body/CategoryPanel/CategoryMargin/CategoryScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="BlockPanel" type="PanelContainer" parent="Dimmer/TerminalPanel/Margin/VBox/Body"]
+custom_minimum_size = Vector2(410, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StylePanel")
+
+[node name="BlockMargin" type="MarginContainer" parent="Dimmer/TerminalPanel/Margin/VBox/Body/BlockPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="BlockVBox" type="VBoxContainer" parent="Dimmer/TerminalPanel/Margin/VBox/Body/BlockPanel/BlockMargin"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="SearchEdit" type="LineEdit" parent="Dimmer/TerminalPanel/Margin/VBox/Body/BlockPanel/BlockMargin/BlockVBox"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleSearch")
+placeholder_text = "Search installed blocks..."
+clear_button_enabled = true
+
+[node name="ResultCount" type="Label" parent="Dimmer/TerminalPanel/Margin/VBox/Body/BlockPanel/BlockMargin/BlockVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.72, 0.76, 1)
+text = "0 installed blocks shown"
+
+[node name="BlockScroll" type="ScrollContainer" parent="Dimmer/TerminalPanel/Margin/VBox/Body/BlockPanel/BlockMargin/BlockVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="BlockList" type="VBoxContainer" parent="Dimmer/TerminalPanel/Margin/VBox/Body/BlockPanel/BlockMargin/BlockVBox/BlockScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="DetailPanel" type="PanelContainer" parent="Dimmer/TerminalPanel/Margin/VBox/Body"]
+custom_minimum_size = Vector2(390, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StylePanel")
+
+[node name="DetailMargin" type="MarginContainer" parent="Dimmer/TerminalPanel/Margin/VBox/Body/DetailPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="DetailVBox" type="VBoxContainer" parent="Dimmer/TerminalPanel/Margin/VBox/Body/DetailPanel/DetailMargin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="DetailTitle" type="Label" parent="Dimmer/TerminalPanel/Margin/VBox/Body/DetailPanel/DetailMargin/DetailVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 19
+text = "NO BLOCK SELECTED"
+autowrap_mode = 2
+
+
+[node name="ConfigPanel" type="PanelContainer" parent="Dimmer/TerminalPanel/Margin/VBox/Body/DetailPanel/DetailMargin/DetailVBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleDiag")
+
+[node name="ConfigMargin" type="MarginContainer" parent="Dimmer/TerminalPanel/Margin/VBox/Body/DetailPanel/DetailMargin/DetailVBox/ConfigPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ConfigVBox" type="VBoxContainer" parent="Dimmer/TerminalPanel/Margin/VBox/Body/DetailPanel/DetailMargin/DetailVBox/ConfigPanel/ConfigMargin"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="EnabledToggle" type="CheckButton" parent="Dimmer/TerminalPanel/Margin/VBox/Body/DetailPanel/DetailMargin/DetailVBox/ConfigPanel/ConfigMargin/ConfigVBox"]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "FUNCTION ENABLED"
+
+[node name="NameRow" type="HBoxContainer" parent="Dimmer/TerminalPanel/Margin/VBox/Body/DetailPanel/DetailMargin/DetailVBox/ConfigPanel/ConfigMargin/ConfigVBox"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="CustomNameEdit" type="LineEdit" parent="Dimmer/TerminalPanel/Margin/VBox/Body/DetailPanel/DetailMargin/DetailVBox/ConfigPanel/ConfigMargin/ConfigVBox/NameRow"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+max_length = 48
+placeholder_text = "Custom block name"
+clear_button_enabled = true
+
+[node name="ApplyNameButton" type="Button" parent="Dimmer/TerminalPanel/Margin/VBox/Body/DetailPanel/DetailMargin/DetailVBox/ConfigPanel/ConfigMargin/ConfigVBox/NameRow"]
+custom_minimum_size = Vector2(82, 44)
+layout_mode = 2
+text = "NAME"
+
+[node name="PriorityRow" type="HBoxContainer" parent="Dimmer/TerminalPanel/Margin/VBox/Body/DetailPanel/DetailMargin/DetailVBox/ConfigPanel/ConfigMargin/ConfigVBox"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="PriorityLabel" type="Label" parent="Dimmer/TerminalPanel/Margin/VBox/Body/DetailPanel/DetailMargin/DetailVBox/ConfigPanel/ConfigMargin/ConfigVBox/PriorityRow"]
+custom_minimum_size = Vector2(92, 44)
+layout_mode = 2
+text = "PRIORITY"
+vertical_alignment = 1
+
+[node name="PriorityOption" type="OptionButton" parent="Dimmer/TerminalPanel/Margin/VBox/Body/DetailPanel/DetailMargin/DetailVBox/ConfigPanel/ConfigMargin/ConfigVBox/PriorityRow"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GroupCreateRow" type="HBoxContainer" parent="Dimmer/TerminalPanel/Margin/VBox/Body/DetailPanel/DetailMargin/DetailVBox/ConfigPanel/ConfigMargin/ConfigVBox"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="GroupNameEdit" type="LineEdit" parent="Dimmer/TerminalPanel/Margin/VBox/Body/DetailPanel/DetailMargin/DetailVBox/ConfigPanel/ConfigMargin/ConfigVBox/GroupCreateRow"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+max_length = 32
+placeholder_text = "New group"
+
+[node name="CreateGroupButton" type="Button" parent="Dimmer/TerminalPanel/Margin/VBox/Body/DetailPanel/DetailMargin/DetailVBox/ConfigPanel/ConfigMargin/ConfigVBox/GroupCreateRow"]
+custom_minimum_size = Vector2(82, 44)
+layout_mode = 2
+text = "CREATE"
+
+[node name="GroupManageRow" type="HBoxContainer" parent="Dimmer/TerminalPanel/Margin/VBox/Body/DetailPanel/DetailMargin/DetailVBox/ConfigPanel/ConfigMargin/ConfigVBox"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="GroupOption" type="OptionButton" parent="Dimmer/TerminalPanel/Margin/VBox/Body/DetailPanel/DetailMargin/DetailVBox/ConfigPanel/ConfigMargin/ConfigVBox/GroupManageRow"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ToggleMembershipButton" type="Button" parent="Dimmer/TerminalPanel/Margin/VBox/Body/DetailPanel/DetailMargin/DetailVBox/ConfigPanel/ConfigMargin/ConfigVBox/GroupManageRow"]
+custom_minimum_size = Vector2(82, 44)
+layout_mode = 2
+text = "ADD"
+
+[node name="DeleteGroupButton" type="Button" parent="Dimmer/TerminalPanel/Margin/VBox/Body/DetailPanel/DetailMargin/DetailVBox/ConfigPanel/ConfigMargin/ConfigVBox/GroupManageRow"]
+custom_minimum_size = Vector2(64, 44)
+layout_mode = 2
+text = "DEL"
+
+[node name="ConfigStatus" type="Label" parent="Dimmer/TerminalPanel/Margin/VBox/Body/DetailPanel/DetailMargin/DetailVBox/ConfigPanel/ConfigMargin/ConfigVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.62, 0.86, 0.9, 1)
+text = "Select a block to configure"
+autowrap_mode = 2
+
+[node name="DetailText" type="RichTextLabel" parent="Dimmer/TerminalPanel/Margin/VBox/Body/DetailPanel/DetailMargin/DetailVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+fit_content = false
+scroll_active = true
+theme_override_colors/default_color = Color(0.82, 0.89, 0.91, 1)
+theme_override_font_sizes/normal_font_size = 15
+text = "Choose an installed block to inspect its authoritative runtime state."
+
+[node name="Footer" type="Label" parent="Dimmer/TerminalPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.48, 0.67, 0.7, 1)
+theme_override_font_sizes/font_size = 13
+text = "CONFIGURATION TERMINAL · changes persist with grid state · T / TERM closes this screen"
+horizontal_alignment = 1

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemDefinition" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/inventory/item_definition.gd" id="1_item"]
+
+[resource]
+script = ExtResource("1_item")
+id = &"component_structural_plate"
+display_name = "Structural Plate"
+description = "Standard load-bearing plate used by frames, armor, and machine housings."
+category = &"component"
+tags = Array[StringName]([&"component", &"structure", &"metal", &"starter"])
+unit_mass_kg = 2.5000
+unit_volume_l = 0.6500
+stack_limit = 200

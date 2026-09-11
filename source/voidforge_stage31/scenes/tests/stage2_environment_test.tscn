@@ -1,0 +1,124 @@
+[gd_scene load_steps=13 format=3]
+
+[ext_resource type="Script" path="res://scripts/world/stage2_environment_test.gd" id="1_world"]
+[ext_resource type="Material" path="res://assets/materials/dev_floor_material.tres" id="2_floor"]
+[ext_resource type="Material" path="res://assets/materials/dev_structure_material.tres" id="3_structure"]
+[ext_resource type="Material" path="res://assets/materials/dev_accent_material.tres" id="4_accent"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_main"]
+sky_top_color = Color(0.018, 0.035, 0.07, 1)
+sky_horizon_color = Color(0.18, 0.25, 0.34, 1)
+ground_bottom_color = Color(0.015, 0.018, 0.025, 1)
+ground_horizon_color = Color(0.11, 0.13, 0.16, 1)
+sun_angle_max = 8.0
+
+[sub_resource type="Sky" id="Sky_main"]
+sky_material = SubResource("ProceduralSkyMaterial_main")
+
+[sub_resource type="Environment" id="Environment_main"]
+background_mode = 2
+sky = SubResource("Sky_main")
+ambient_light_source = 3
+ambient_light_color = Color(0.48, 0.56, 0.68, 1)
+ambient_light_sky_contribution = 0.75
+ambient_light_energy = 0.62
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ground"]
+material = ExtResource("2_floor")
+size = Vector2(120, 120)
+subdivide_width = 12
+subdivide_depth = 12
+
+[sub_resource type="BoxShape3D" id="BoxShape_ground"]
+size = Vector3(120, 0.5, 120)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cube"]
+material = ExtResource("3_structure")
+size = Vector3(1, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_platform"]
+material = ExtResource("3_structure")
+size = Vector3(10, 0.5, 8)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_marker"]
+material = ExtResource("4_accent")
+top_radius = 0.18
+bottom_radius = 0.18
+height = 2.5
+radial_segments = 10
+rings = 1
+
+[node name="Stage2Environment" type="Node3D"]
+script = ExtResource("1_world")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_main")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-52, -28, 0)
+light_color = Color(0.96, 0.98, 1, 1)
+light_energy = 1.15
+shadow_enabled = false
+
+[node name="CameraRig" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="CameraRig"]
+position = Vector3(13, 8.5, 18)
+fov = 72.0
+near = 0.1
+far = 2000.0
+
+[node name="TestGeometry" type="Node3D" parent="."]
+
+[node name="Ground" type="Node3D" parent="TestGeometry"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestGeometry/Ground"]
+mesh = SubResource("PlaneMesh_ground")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TestGeometry/Ground"]
+collision_layer = 1
+collision_mask = 63
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestGeometry/Ground/StaticBody3D"]
+position = Vector3(0, -0.25, 0)
+shape = SubResource("BoxShape_ground")
+
+[node name="ScaleReferences" type="Node3D" parent="TestGeometry"]
+
+[node name="Cube1m" type="MeshInstance3D" parent="TestGeometry/ScaleReferences"]
+position = Vector3(-5, 0.5, 1)
+mesh = SubResource("BoxMesh_cube")
+
+[node name="Cube2_5m" type="MeshInstance3D" parent="TestGeometry/ScaleReferences"]
+position = Vector3(-2, 1.25, 1)
+scale = Vector3(2.5, 2.5, 2.5)
+mesh = SubResource("BoxMesh_cube")
+
+[node name="Cube5m" type="MeshInstance3D" parent="TestGeometry/ScaleReferences"]
+position = Vector3(3.5, 2.5, 1)
+scale = Vector3(5, 5, 5)
+mesh = SubResource("BoxMesh_cube")
+
+[node name="RaisedPlatform" type="MeshInstance3D" parent="TestGeometry"]
+position = Vector3(0, 0.25, -8)
+mesh = SubResource("BoxMesh_platform")
+
+[node name="RampReference" type="MeshInstance3D" parent="TestGeometry"]
+position = Vector3(7.2, 1.25, -7.5)
+rotation_degrees = Vector3(0, 0, -15)
+scale = Vector3(5, 0.5, 3)
+mesh = SubResource("BoxMesh_cube")
+
+[node name="DistanceMarkers" type="Node3D" parent="TestGeometry"]
+
+[node name="Marker10m" type="MeshInstance3D" parent="TestGeometry/DistanceMarkers"]
+position = Vector3(-8, 1.25, -10)
+mesh = SubResource("CylinderMesh_marker")
+
+[node name="Marker20m" type="MeshInstance3D" parent="TestGeometry/DistanceMarkers"]
+position = Vector3(-8, 1.25, -20)
+mesh = SubResource("CylinderMesh_marker")
+
+[node name="Marker40m" type="MeshInstance3D" parent="TestGeometry/DistanceMarkers"]
+position = Vector3(-8, 1.25, -40)
+mesh = SubResource("CylinderMesh_marker")

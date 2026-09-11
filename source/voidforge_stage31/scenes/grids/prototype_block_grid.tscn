@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/grids/block_grid.gd" id="1_grid"]
+[ext_resource type="Resource" path="res://data/grids/large_grid_profile.tres" id="2_profile"]
+[ext_resource type="Script" path="res://scripts/grids/block_grid_presenter.gd" id="3_presenter"]
+
+[node name="PrototypeBlockGrid" type="RigidBody3D"]
+script = ExtResource("1_grid")
+grid_profile = ExtResource("2_profile")
+
+[node name="BlockPresenter" type="Node3D" parent="."]
+script = ExtResource("3_presenter")

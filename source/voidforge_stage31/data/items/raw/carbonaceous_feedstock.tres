@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemDefinition" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/inventory/item_definition.gd" id="1_item"]
+
+[resource]
+script = ExtResource("1_item")
+id = &"resource_carbonaceous"
+display_name = "Carbonaceous Feedstock"
+description = "Carbon-rich material used for polymers, composites, filters, and chemical processing."
+category = &"raw_ore"
+tags = Array[StringName]([&"resource", &"carbon", &"refinable", &"starter"])
+unit_mass_kg = 0.4200
+unit_volume_l = 0.5500
+stack_limit = 500

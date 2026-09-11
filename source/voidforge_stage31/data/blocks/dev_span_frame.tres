@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="BlockDefinition" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/blocks/block_definition.gd" id="1_block"]
+[ext_resource type="Script" path="res://scripts/blocks/block_cost_entry.gd" id="2_cost"]
+
+[sub_resource type="Resource" id="CostPlate"]
+script = ExtResource("2_cost")
+item_id = &"component_structural_plate"
+quantity = 20
+
+[sub_resource type="Resource" id="CostFrame"]
+script = ExtResource("2_cost")
+item_id = &"component_machine_frame"
+quantity = 4
+
+[resource]
+script = ExtResource("1_block")
+id = &"dev_span_frame"
+display_name = "Span Frame"
+description = "A two-cell load-bearing engineering frame used to validate discrete block orientation and rotated footprints."
+category = &"structure"
+tags = Array[StringName]([&"development", &"structural", &"rotation_test"])
+allowed_grid_sizes = Array[StringName]([&"large", &"static"])
+dimensions_cells = Vector3i(2, 1, 1)
+attachment_faces_mask = 63
+build_cost = Array[Resource]([SubResource("CostPlate"), SubResource("CostFrame")])
+construction_stages = 4
+mass_kg = 320.0
+max_integrity = 410.0
+material_id = &"industrial_alloy"
+functional_type = &"structural"

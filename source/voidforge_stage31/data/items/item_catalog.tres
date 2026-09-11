@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="ItemCatalog" load_steps=23 format=3]
+
+[ext_resource type="Script" path="res://scripts/inventory/item_catalog.gd" id="1_catalog"]
+[ext_resource type="Resource" path="res://data/items/raw/ferrite_ore.tres" id="2_item"]
+[ext_resource type="Resource" path="res://data/items/raw/cupric_ore.tres" id="3_item"]
+[ext_resource type="Resource" path="res://data/items/raw/nickelite_ore.tres" id="4_item"]
+[ext_resource type="Resource" path="res://data/items/raw/silicate_ore.tres" id="5_item"]
+[ext_resource type="Resource" path="res://data/items/raw/titanium_ore.tres" id="6_item"]
+[ext_resource type="Resource" path="res://data/items/raw/cobalt_ore.tres" id="7_item"]
+[ext_resource type="Resource" path="res://data/items/raw/lithic_salt.tres" id="8_item"]
+[ext_resource type="Resource" path="res://data/items/raw/uranic_ore.tres" id="9_item"]
+[ext_resource type="Resource" path="res://data/items/raw/carbonaceous_feedstock.tres" id="10_item"]
+[ext_resource type="Resource" path="res://data/items/raw/water_ice.tres" id="11_item"]
+[ext_resource type="Resource" path="res://data/items/raw/prismite_crystal.tres" id="12_item"]
+[ext_resource type="Resource" path="res://data/items/components/structural_plate.tres" id="13_item"]
+[ext_resource type="Resource" path="res://data/items/components/conductive_wire.tres" id="14_item"]
+[ext_resource type="Resource" path="res://data/items/components/drive_motor.tres" id="15_item"]
+[ext_resource type="Resource" path="res://data/items/components/logic_core.tres" id="16_item"]
+[ext_resource type="Resource" path="res://data/items/components/transparent_panel.tres" id="17_item"]
+[ext_resource type="Resource" path="res://data/items/components/pressure_seal.tres" id="18_item"]
+[ext_resource type="Resource" path="res://data/items/components/linear_actuator.tres" id="19_item"]
+[ext_resource type="Resource" path="res://data/items/components/power_cell.tres" id="20_item"]
+[ext_resource type="Resource" path="res://data/items/components/machine_frame.tres" id="21_item"]
+[ext_resource type="Resource" path="res://data/items/tools/field_bore_drill.tres" id="22_item"]
+
+[resource]
+script = ExtResource("1_catalog")
+items = Array[Resource]([
+    ExtResource("2_item"),
+    ExtResource("3_item"),
+    ExtResource("4_item"),
+    ExtResource("5_item"),
+    ExtResource("6_item"),
+    ExtResource("7_item"),
+    ExtResource("8_item"),
+    ExtResource("9_item"),
+    ExtResource("10_item"),
+    ExtResource("11_item"),
+    ExtResource("12_item"),
+    ExtResource("13_item"),
+    ExtResource("14_item"),
+    ExtResource("15_item"),
+    ExtResource("16_item"),
+    ExtResource("17_item"),
+    ExtResource("18_item"),
+    ExtResource("19_item"),
+    ExtResource("20_item"),
+    ExtResource("21_item"),
+    ExtResource("22_item")
+])

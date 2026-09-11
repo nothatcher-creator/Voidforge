@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="BlockDefinition" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/blocks/block_definition.gd" id="1_block"]
+[ext_resource type="Script" path="res://scripts/blocks/block_cost_entry.gd" id="2_cost"]
+
+[sub_resource type="Resource" id="Cost1"]
+script = ExtResource("2_cost")
+item_id = &"component_machine_frame"
+quantity = 2
+
+[sub_resource type="Resource" id="Cost2"]
+script = ExtResource("2_cost")
+item_id = &"component_conductive_wire"
+quantity = 8
+
+[resource]
+script = ExtResource("1_block")
+id = &"dev_power_source_large"
+display_name = "Development Power Source L"
+description = "A temporary deterministic electrical source used to validate grid power networks before battery and generator blocks arrive in Stages 26-27."
+category = &"power"
+tags = Array[StringName]([&"development", &"power", &"source", &"large_grid"])
+allowed_grid_sizes = Array[StringName]([&"large"])
+dimensions_cells = Vector3i(1, 1, 1)
+attachment_faces_mask = 63
+build_cost = Array[Resource]([SubResource("Cost1"), SubResource("Cost2")])
+construction_stages = 2
+mass_kg = 300.0
+max_integrity = 300.0
+material_id = &"industrial_alloy"
+functional_type = &"power_source"
+enabled_by_default = true
+power_use_kw = 0.0
+power_production_kw = 180.0
+presentation_shape = &"box"
+presentation_scale = Vector3(0.72, 0.72, 0.72)
+presentation_material_id = &"service_panel"

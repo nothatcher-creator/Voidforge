@@ -1,0 +1,20 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/world/stage26_battery.gd" id="1_test"]
+[ext_resource type="PackedScene" path="res://scenes/tests/stage25_power_network_test.tscn" id="2_stage25"]
+[ext_resource type="Script" path="res://scripts/grids/block_grid.gd" id="3_grid"]
+[ext_resource type="Script" path="res://scripts/grids/block_grid_presenter.gd" id="4_presenter"]
+[ext_resource type="Resource" path="res://data/grids/large_grid_profile.tres" id="5_large"]
+
+[node name="Stage26Battery" type="Node3D"]
+script = ExtResource("1_test")
+
+[node name="Stage25PowerNetwork" parent="." instance=ExtResource("2_stage25")]
+
+[node name="BatteryCraft" type="RigidBody3D" parent="."]
+position = Vector3(52, 8, 2)
+script = ExtResource("3_grid")
+grid_profile = ExtResource("5_large")
+
+[node name="BlockPresenter" type="Node3D" parent="BatteryCraft"]
+script = ExtResource("4_presenter")

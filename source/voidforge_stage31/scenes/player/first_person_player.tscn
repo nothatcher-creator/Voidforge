@@ -1,0 +1,86 @@
+[gd_scene load_steps=12 format=3]
+
+[ext_resource type="Script" path="res://scripts/player/first_person_player.gd" id="1_player"]
+[ext_resource type="Material" path="res://assets/materials/dev_accent_material.tres" id="2_accent"]
+[ext_resource type="Script" path="res://scripts/interaction/player_interactor.gd" id="3_interactor"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_component.gd" id="4_inventory"]
+[ext_resource type="Script" path="res://scripts/player/hotbar_component.gd" id="5_hotbar"]
+[ext_resource type="Script" path="res://scripts/building/block_placement_controller.gd" id="6_builder"]
+[ext_resource type="Resource" path="res://data/blocks/dev_hull_frame.tres" id="7_build_block"]
+[ext_resource type="Script" path="res://scripts/tools/hand_drill_controller.gd" id="8_drill_controller"]
+[ext_resource type="Material" path="res://assets/materials/drill_beam_material.tres" id="9_drill_beam"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_player"]
+radius = 0.38
+height = 1.8
+
+[sub_resource type="BoxMesh" id="BoxMesh_drill_beam"]
+material = ExtResource("9_drill_beam")
+size = Vector3(0.035, 0.035, 2.8)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_player"]
+material = ExtResource("2_accent")
+radius = 0.38
+height = 1.8
+radial_segments = 12
+rings = 4
+
+[node name="FirstPersonPlayer" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 5
+motion_mode = 0
+script = ExtResource("1_player")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_player")
+
+[node name="DevelopmentBody" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("CapsuleMesh_player")
+
+[node name="Inventory" type="Node" parent="."]
+script = ExtResource("4_inventory")
+capacity_l = 120.0
+max_stacks = 24
+
+[node name="Hotbar" type="Node" parent="."]
+script = ExtResource("5_hotbar")
+slot_count = 8
+selected_slot = 0
+inventory_path = NodePath("../Inventory")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+position = Vector3(0, 0.65, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+fov = 75.0
+near = 0.05
+far = 2000.0
+current = true
+
+[node name="PlayerInteractor" type="RayCast3D" parent="CameraPivot/Camera3D"]
+enabled = true
+target_position = Vector3(0, 0, -4)
+collision_mask = 8
+collide_with_areas = true
+script = ExtResource("3_interactor")
+
+[node name="BuildController" type="Node3D" parent="."]
+script = ExtResource("6_builder")
+camera_path = NodePath("../CameraPivot/Camera3D")
+build_block_id = &"dev_hull_frame"
+build_block_definition = ExtResource("7_build_block")
+placement_range_m = 12.0
+grid_collision_mask = 4
+
+[node name="HandDrillController" type="Node3D" parent="."]
+script = ExtResource("8_drill_controller")
+camera_path = NodePath("../CameraPivot/Camera3D")
+hotbar_path = NodePath("../Hotbar")
+player_path = NodePath("..")
+
+[node name="DrillBeam" type="MeshInstance3D" parent="HandDrillController"]
+position = Vector3(0.22, -0.16, -1.45)
+mesh = SubResource("BoxMesh_drill_beam")
+cast_shadow = 0
+visible = false

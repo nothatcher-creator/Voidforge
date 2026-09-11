@@ -1,0 +1,20 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/world/stage29_ship_terminal.gd" id="1_test"]
+[ext_resource type="PackedScene" path="res://scenes/tests/stage28_power_priority_test.tscn" id="2_stage28"]
+[ext_resource type="Script" path="res://scripts/grids/block_grid.gd" id="3_grid"]
+[ext_resource type="Script" path="res://scripts/grids/block_grid_presenter.gd" id="4_presenter"]
+[ext_resource type="Resource" path="res://data/grids/large_grid_profile.tres" id="5_large"]
+
+[node name="Stage29ShipTerminal" type="Node3D"]
+script = ExtResource("1_test")
+
+[node name="Stage28PowerPriority" parent="." instance=ExtResource("2_stage28")]
+
+[node name="TerminalCraft" type="RigidBody3D" parent="."]
+position = Vector3(78, 8, 2)
+script = ExtResource("3_grid")
+grid_profile = ExtResource("5_large")
+
+[node name="BlockPresenter" type="Node3D" parent="TerminalCraft"]
+script = ExtResource("4_presenter")

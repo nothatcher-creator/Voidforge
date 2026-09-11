@@ -1,0 +1,20 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/world/stage15_structural_library_test.gd" id="1_test"]
+[ext_resource type="PackedScene" path="res://scenes/tests/stage14_block_database_test.tscn" id="2_stage14"]
+[ext_resource type="PackedScene" path="res://scenes/grids/prototype_block_grid.tscn" id="3_grid"]
+[ext_resource type="Resource" path="res://data/grids/large_grid_profile.tres" id="4_large"]
+[ext_resource type="Resource" path="res://data/grids/small_grid_profile.tres" id="5_small"]
+
+[node name="Stage15StructuralLibraryTest" type="Node3D"]
+script = ExtResource("1_test")
+
+[node name="Stage14BlockDatabaseTest" parent="." instance=ExtResource("2_stage14")]
+
+[node name="LargeStructuralGallery" parent="." instance=ExtResource("3_grid")]
+position = Vector3(24, 1.25, -8)
+grid_profile = ExtResource("4_large")
+
+[node name="SmallStructuralGallery" parent="." instance=ExtResource("3_grid")]
+position = Vector3(24, 0.25, 6)
+grid_profile = ExtResource("5_small")

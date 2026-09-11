@@ -1,0 +1,59 @@
+[gd_resource type="Resource" script_class="BlockDefinition" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/blocks/block_definition.gd" id="1_block"]
+[ext_resource type="Script" path="res://scripts/blocks/block_cost_entry.gd" id="2_cost"]
+
+[sub_resource type="Resource" id="Cost1"]
+script = ExtResource("2_cost")
+item_id = &"component_structural_plate"
+quantity = 10
+
+[sub_resource type="Resource" id="Cost2"]
+script = ExtResource("2_cost")
+item_id = &"component_machine_frame"
+quantity = 3
+
+[sub_resource type="Resource" id="Cost3"]
+script = ExtResource("2_cost")
+item_id = &"component_drive_motor"
+quantity = 4
+
+[sub_resource type="Resource" id="Cost4"]
+script = ExtResource("2_cost")
+item_id = &"component_conductive_wire"
+quantity = 6
+
+[sub_resource type="Resource" id="Cost5"]
+script = ExtResource("2_cost")
+item_id = &"component_logic_core"
+quantity = 1
+
+[resource]
+script = ExtResource("1_block")
+id = &"pulse_thruster_large"
+display_name = "Pulse Thruster L"
+description = "A large-grid vector nozzle that converts control input into strong directed force. Its rated electrical draw scales with commanded thrust; fuel dependencies arrive later."
+category = &"propulsion"
+tags = Array[StringName]([&"production", &"propulsion", &"thruster", &"large_grid", &"directional"])
+allowed_grid_sizes = Array[StringName]([&"large"])
+dimensions_cells = Vector3i(1, 1, 1)
+attachment_faces_mask = 63
+build_cost = Array[Resource]([SubResource("Cost1"), SubResource("Cost2"), SubResource("Cost3"), SubResource("Cost4"), SubResource("Cost5")])
+construction_stages = 5
+mass_kg = 520.0
+max_integrity = 560.0
+material_id = &"industrial_alloy"
+functional_type = &"thruster"
+enabled_by_default = true
+power_use_kw = 120.0
+power_priority = 2
+heat_generation_kw = 0.0
+thrust_force_n = 48000.0
+thrust_direction_local = Vector3i(0, 0, -1)
+variant_group = &"thruster_family"
+variant_key = &"pulse_thruster_large"
+variant_order = 10
+presentation_shape = &"thruster"
+presentation_scale = Vector3(0.9, 0.9, 0.9)
+presentation_offset_cells = Vector3(0, 0, 0)
+presentation_material_id = &"propulsion"

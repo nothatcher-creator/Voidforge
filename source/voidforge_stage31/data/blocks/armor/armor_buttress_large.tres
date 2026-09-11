@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="BlockDefinition" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/blocks/block_definition.gd" id="1_block"]
+[ext_resource type="Script" path="res://scripts/blocks/block_cost_entry.gd" id="2_cost"]
+
+[sub_resource type="Resource" id="Cost1"]
+script = ExtResource("2_cost")
+item_id = &"component_structural_plate"
+quantity = 16
+
+[sub_resource type="Resource" id="Cost2"]
+script = ExtResource("2_cost")
+item_id = &"component_machine_frame"
+quantity = 2
+
+[resource]
+script = ExtResource("1_block")
+id = &"armor_buttress_large"
+display_name = "Armor Buttress L"
+description = "A narrow high-integrity rib for external braces, impact rails, and reinforced machinery edges."
+category = &"armor"
+tags = Array[StringName]([&"production", &"armor", &"large_grid", &"buttress", &"beam"])
+allowed_grid_sizes = Array[StringName]([&"large", &"static"])
+dimensions_cells = Vector3i(1, 1, 1)
+attachment_faces_mask = 63
+build_cost = Array[Resource]([SubResource("Cost1"), SubResource("Cost2")])
+construction_stages = 4
+mass_kg = 330.0
+max_integrity = 700.0
+material_id = &"dense_alloy"
+functional_type = &"structural"
+variant_group = &"armor_shape"
+variant_key = &"buttress_large"
+variant_order = 30
+presentation_shape = &"beam"
+presentation_scale = Vector3(0.28, 1.0, 1.0)
+presentation_offset_cells = Vector3(0.0, 0.0, 0.0)
+presentation_material_id = &"armor_heavy"

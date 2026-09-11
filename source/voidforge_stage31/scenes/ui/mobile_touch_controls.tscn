@@ -1,0 +1,166 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/input/mobile_touch_controls.gd" id="1_root"]
+[ext_resource type="Script" path="res://scripts/input/touch_look_area.gd" id="2_look"]
+[ext_resource type="Script" path="res://scripts/input/virtual_joystick.gd" id="3_joystick"]
+[ext_resource type="Script" path="res://scripts/input/touch_action_button.gd" id="4_button"]
+
+[node name="MobileTouchControls" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_root")
+
+[node name="LookArea" type="Control" parent="."]
+layout_mode = 0
+mouse_filter = 2
+script = ExtResource("2_look")
+
+[node name="MoveJoystick" type="Control" parent="."]
+layout_mode = 0
+mouse_filter = 2
+script = ExtResource("3_joystick")
+
+
+[node name="RotationJoystick" type="Control" parent="."]
+visible = false
+layout_mode = 0
+mouse_filter = 2
+script = ExtResource("3_joystick")
+dynamic_origin = false
+dead_zone = 0.18
+move_left_action = &"vehicle_yaw_left"
+move_right_action = &"vehicle_yaw_right"
+move_forward_action = &"vehicle_pitch_up"
+move_backward_action = &"vehicle_pitch_down"
+
+[node name="SprintButton" type="Control" parent="."]
+layout_mode = 0
+mouse_filter = 2
+script = ExtResource("4_button")
+action_name = &"sprint"
+label_text = "SPRINT"
+accent_color = Color(1, 0.68, 0.2, 0.74)
+
+[node name="JumpButton" type="Control" parent="."]
+layout_mode = 0
+mouse_filter = 2
+script = ExtResource("4_button")
+action_name = &"jump"
+label_text = "JUMP"
+
+[node name="InteractButton" type="Control" parent="."]
+layout_mode = 0
+mouse_filter = 2
+script = ExtResource("4_button")
+action_name = &"interact"
+label_text = "USE"
+accent_color = Color(0.35, 1, 0.56, 0.74)
+
+[node name="BuildButton" type="Control" parent="."]
+layout_mode = 0
+mouse_filter = 2
+script = ExtResource("4_button")
+action_name = &"build_place"
+label_text = "BUILD"
+accent_color = Color(0.12, 0.92, 1, 0.78)
+
+
+[node name="RotateButton" type="Control" parent="."]
+layout_mode = 0
+mouse_filter = 2
+script = ExtResource("4_button")
+action_name = &"build_rotate"
+label_text = "ROT"
+accent_color = Color(0.78, 0.38, 1, 0.78)
+
+[node name="RemoveButton" type="Control" parent="."]
+layout_mode = 0
+mouse_filter = 2
+script = ExtResource("4_button")
+action_name = &"build_remove"
+label_text = "RMV"
+accent_color = Color(1, 0.28, 0.08, 0.8)
+
+[node name="ToolButton" type="Control" parent="."]
+layout_mode = 0
+mouse_filter = 2
+script = ExtResource("4_button")
+action_name = &"tool_use"
+label_text = "TOOL"
+accent_color = Color(1, 0.56, 0.16, 0.82)
+
+[node name="ExitSeatButton" type="Control" parent="."]
+visible = false
+layout_mode = 0
+mouse_filter = 2
+script = ExtResource("4_button")
+action_name = &"vehicle_exit"
+label_text = "EXIT"
+accent_color = Color(1, 0.78, 0.18, 0.82)
+
+[node name="ThrustButton" type="Control" parent="."]
+visible = false
+layout_mode = 0
+mouse_filter = 2
+script = ExtResource("4_button")
+action_name = &"vehicle_thrust_forward"
+label_text = "THR"
+accent_color = Color(0.2, 0.84, 1, 0.86)
+
+[node name="ThrustUpButton" type="Control" parent="."]
+visible = false
+layout_mode = 0
+mouse_filter = 2
+script = ExtResource("4_button")
+action_name = &"vehicle_thrust_up"
+label_text = "UP"
+accent_color = Color(0.3, 0.9, 1, 0.84)
+
+[node name="ThrustDownButton" type="Control" parent="."]
+visible = false
+layout_mode = 0
+mouse_filter = 2
+script = ExtResource("4_button")
+action_name = &"vehicle_thrust_down"
+label_text = "DN"
+accent_color = Color(0.24, 0.7, 1, 0.84)
+
+
+[node name="RollLeftButton" type="Control" parent="."]
+visible = false
+layout_mode = 0
+mouse_filter = 2
+script = ExtResource("4_button")
+action_name = &"vehicle_roll_left"
+label_text = "R-L"
+accent_color = Color(0.78, 0.48, 1, 0.86)
+
+[node name="RollRightButton" type="Control" parent="."]
+visible = false
+layout_mode = 0
+mouse_filter = 2
+script = ExtResource("4_button")
+action_name = &"vehicle_roll_right"
+label_text = "R-R"
+accent_color = Color(0.78, 0.48, 1, 0.86)
+
+[node name="TerminalButton" type="Control" parent="."]
+visible = false
+layout_mode = 0
+mouse_filter = 2
+script = ExtResource("4_button")
+action_name = &"ship_terminal"
+label_text = "TERM"
+accent_color = Color(0.18, 0.92, 0.82, 0.88)
+
+[node name="TouchModeLabel" type="Label" parent="."]
+layout_mode = 0
+mouse_filter = 2
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 14
+text = "TOUCH  •  LEFT STICK MOVE  •  RIGHT DRAG LOOK  •  USE  •  BUILD  •  ROT  •  RMV"

@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/world/stage9_grid_test.gd" id="1_test"]
+[ext_resource type="PackedScene" path="res://scenes/tests/stage8_hotbar_test.tscn" id="2_stage8"]
+[ext_resource type="PackedScene" path="res://scenes/grids/prototype_block_grid.tscn" id="3_grid"]
+
+[node name="Stage9GridTest" type="Node3D"]
+script = ExtResource("1_test")
+
+[node name="Stage8HotbarTest" parent="." instance=ExtResource("2_stage8")]
+
+[node name="PrototypeBlockGrid" parent="." instance=ExtResource("3_grid")]
+position = Vector3(12, 1.25, -8)

@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="BlockDefinition" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/blocks/block_definition.gd" id="1_block"]
+[ext_resource type="Script" path="res://scripts/blocks/block_cost_entry.gd" id="2_cost"]
+
+[sub_resource type="Resource" id="Cost1"]
+script = ExtResource("2_cost")
+item_id = &"component_structural_plate"
+quantity = 5
+
+[resource]
+script = ExtResource("1_block")
+id = &"grate_walkway_large"
+display_name = "Ventilated Walkway L"
+description = "An open industrial walking surface for catwalks and machinery spaces where visibility and drainage matter."
+category = &"structure"
+tags = Array[StringName]([&"production", &"structural", &"grating", &"walkway", &"large_grid", &"thin"])
+allowed_grid_sizes = Array[StringName]([&"large", &"static"])
+dimensions_cells = Vector3i(1, 1, 1)
+attachment_faces_mask = 63
+build_cost = Array[Resource]([SubResource("Cost1")])
+construction_stages = 2
+mass_kg = 45.0
+max_integrity = 85.0
+material_id = &"industrial_alloy"
+functional_type = &"structural"
+variant_group = &"walkway_family"
+variant_key = &"grating_large"
+variant_order = 10
+presentation_shape = &"grating"
+presentation_scale = Vector3(1.0, 0.08, 1.0)
+presentation_offset_cells = Vector3(0.0, -0.46, 0.0)
+presentation_material_id = &"grating"

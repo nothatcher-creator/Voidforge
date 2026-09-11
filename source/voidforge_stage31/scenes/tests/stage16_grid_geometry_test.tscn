@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/world/stage16_grid_geometry_test.gd" id="1_test"]
+[ext_resource type="PackedScene" path="res://scenes/tests/stage15_structural_library_test.tscn" id="2_stage15"]
+[ext_resource type="Script" path="res://scripts/grids/block_grid.gd" id="3_grid"]
+[ext_resource type="Script" path="res://scripts/grids/block_grid_presenter.gd" id="4_presenter"]
+[ext_resource type="Resource" path="res://data/grids/large_grid_profile.tres" id="5_large"]
+
+[node name="Stage16GridGeometryTest" type="Node3D"]
+script = ExtResource("1_test")
+
+[node name="Stage15StructuralLibraryTest" parent="." instance=ExtResource("2_stage15")]
+
+[node name="BatchStressGrid" type="RigidBody3D" parent="."]
+position = Vector3(0, 1.25, -36)
+script = ExtResource("3_grid")
+grid_profile = ExtResource("5_large")
+
+[node name="BlockPresenter" type="Node3D" parent="BatchStressGrid"]
+script = ExtResource("4_presenter")
+render_collision = false

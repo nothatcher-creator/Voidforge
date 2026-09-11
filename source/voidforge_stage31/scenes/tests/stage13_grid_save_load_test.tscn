@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/world/stage13_grid_save_load_test.gd" id="1_test"]
+[ext_resource type="PackedScene" path="res://scenes/tests/stage12_block_removal_test.tscn" id="2_stage12"]
+
+[node name="Stage13GridSaveLoadTest" type="Node3D"]
+script = ExtResource("1_test")
+
+[node name="Stage12BlockRemovalTest" parent="." instance=ExtResource("2_stage12")]

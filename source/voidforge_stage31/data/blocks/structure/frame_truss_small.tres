@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="BlockDefinition" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/blocks/block_definition.gd" id="1_block"]
+[ext_resource type="Script" path="res://scripts/blocks/block_cost_entry.gd" id="2_cost"]
+
+[sub_resource type="Resource" id="Cost1"]
+script = ExtResource("2_cost")
+item_id = &"component_structural_plate"
+quantity = 4
+
+[sub_resource type="Resource" id="Cost2"]
+script = ExtResource("2_cost")
+item_id = &"component_machine_frame"
+quantity = 1
+
+[resource]
+script = ExtResource("1_block")
+id = &"frame_truss_small"
+display_name = "Truss Frame S"
+description = "A denser small-grid truss with thicker members for compact craft that need more impact tolerance."
+category = &"structure"
+tags = Array[StringName]([&"production", &"structural", &"frame", &"small_grid", &"reinforced"])
+allowed_grid_sizes = Array[StringName]([&"small"])
+dimensions_cells = Vector3i(1, 1, 1)
+attachment_faces_mask = 63
+build_cost = Array[Resource]([SubResource("Cost1"), SubResource("Cost2")])
+construction_stages = 2
+mass_kg = 18.0
+max_integrity = 85.0
+material_id = &"industrial_alloy"
+functional_type = &"structural"
+variant_group = &"frame_family"
+variant_key = &"truss_small"
+variant_order = 20
+presentation_shape = &"frame"
+presentation_scale = Vector3(0.11, 0.11, 0.11)
+presentation_offset_cells = Vector3(0.0, 0.0, 0.0)
+presentation_material_id = &"structure_heavy"

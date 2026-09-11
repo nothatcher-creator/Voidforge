@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemDefinition" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/inventory/item_definition.gd" id="1_item"]
+
+[resource]
+script = ExtResource("1_item")
+id = &"component_power_cell"
+display_name = "Power Cell"
+description = "Packaged electrochemical cell used in batteries, tools, and compact devices."
+category = &"component"
+tags = Array[StringName]([&"component", &"electrical", &"energy"])
+unit_mass_kg = 1.2000
+unit_volume_l = 0.5500
+stack_limit = 120

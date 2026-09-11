@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://scripts/world/stage3_player_movement_test.gd" id="1_test"]
+[ext_resource type="PackedScene" path="res://scenes/tests/stage2_environment_test.tscn" id="2_environment"]
+[ext_resource type="PackedScene" path="res://scenes/player/first_person_player.tscn" id="3_player"]
+[ext_resource type="Material" path="res://assets/materials/dev_structure_material.tres" id="4_structure"]
+[ext_resource type="Material" path="res://assets/materials/dev_accent_material.tres" id="5_accent"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_step"]
+material = ExtResource("4_structure")
+size = Vector3(2.5, 0.3, 2.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape_step"]
+size = Vector3(2.5, 0.3, 2.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_slope"]
+material = ExtResource("5_accent")
+size = Vector3(4, 0.35, 7)
+
+[sub_resource type="BoxShape3D" id="BoxShape_slope"]
+size = Vector3(4, 0.35, 7)
+
+[node name="Stage3PlayerMovementTest" type="Node3D"]
+script = ExtResource("1_test")
+
+[node name="Stage2Environment" parent="." instance=ExtResource("2_environment")]
+activate_development_camera = false
+
+[node name="FirstPersonPlayer" parent="." instance=ExtResource("3_player")]
+position = Vector3(0, 1.05, 10)
+
+[node name="MovementCourse" type="Node3D" parent="."]
+
+[node name="Step1" type="StaticBody3D" parent="MovementCourse"]
+position = Vector3(-7, 0.15, 5)
+collision_layer = 1
+collision_mask = 63
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MovementCourse/Step1"]
+mesh = SubResource("BoxMesh_step")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MovementCourse/Step1"]
+shape = SubResource("BoxShape_step")
+
+[node name="Step2" type="StaticBody3D" parent="MovementCourse"]
+position = Vector3(-7, 0.45, 2.5)
+collision_layer = 1
+collision_mask = 63
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MovementCourse/Step2"]
+mesh = SubResource("BoxMesh_step")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MovementCourse/Step2"]
+shape = SubResource("BoxShape_step")
+
+[node name="Step3" type="StaticBody3D" parent="MovementCourse"]
+position = Vector3(-7, 0.75, 0)
+collision_layer = 1
+collision_mask = 63
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MovementCourse/Step3"]
+mesh = SubResource("BoxMesh_step")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MovementCourse/Step3"]
+shape = SubResource("BoxShape_step")
+
+[node name="WalkableSlope" type="StaticBody3D" parent="MovementCourse"]
+position = Vector3(8, 0.85, 1)
+rotation_degrees = Vector3(-12, 0, 0)
+collision_layer = 1
+collision_mask = 63
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MovementCourse/WalkableSlope"]
+mesh = SubResource("BoxMesh_slope")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MovementCourse/WalkableSlope"]
+shape = SubResource("BoxShape_slope")

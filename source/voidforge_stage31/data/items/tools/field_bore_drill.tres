@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ItemDefinition" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/inventory/item_definition.gd" id="1_item"]
+
+[resource]
+script = ExtResource("1_item")
+id = &"tool_field_bore_drill"
+display_name = "Field Bore Drill"
+description = "Compact rotary-percussive prospecting drill for close-range material extraction."
+category = &"tool"
+tags = Array[StringName]([&"tool", &"mining", &"handheld", &"starter"])
+unit_mass_kg = 7.5
+unit_volume_l = 5.5
+stack_limit = 1
+tool_type = &"hand_drill"
+tool_range_m = 4.5
+tool_work_rate_per_s = 25.0

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/tests/stage3_player_movement_test.tscn" id="1_stage3"]
+[ext_resource type="PackedScene" path="res://scenes/interaction/test_interactable.tscn" id="2_target"]
+
+[node name="Stage5InteractionTest" type="Node3D"]
+
+[node name="Stage3PlayerMovementTest" parent="." instance=ExtResource("1_stage3")]
+
+[node name="TestRelay" parent="." instance=ExtResource("2_target")]
+position = Vector3(0, 0.9, 6.2)

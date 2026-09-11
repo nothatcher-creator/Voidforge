@@ -1,0 +1,20 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/world/stage24_mobile_ship_control.gd" id="1_test"]
+[ext_resource type="PackedScene" path="res://scenes/tests/stage23_gyroscope_test.tscn" id="2_stage23"]
+[ext_resource type="Script" path="res://scripts/grids/block_grid.gd" id="3_grid"]
+[ext_resource type="Script" path="res://scripts/grids/block_grid_presenter.gd" id="4_presenter"]
+[ext_resource type="Resource" path="res://data/grids/large_grid_profile.tres" id="5_large"]
+
+[node name="Stage24MobileShipControl" type="Node3D"]
+script = ExtResource("1_test")
+
+[node name="Stage23GyroscopeTest" parent="." instance=ExtResource("2_stage23")]
+
+[node name="MobileControlCraft" type="RigidBody3D" parent="."]
+position = Vector3(32, 8, 2)
+script = ExtResource("3_grid")
+grid_profile = ExtResource("5_large")
+
+[node name="BlockPresenter" type="Node3D" parent="MobileControlCraft"]
+script = ExtResource("4_presenter")

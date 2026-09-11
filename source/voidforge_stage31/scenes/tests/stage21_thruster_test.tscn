@@ -1,0 +1,20 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/world/stage21_thruster_test.gd" id="1_test"]
+[ext_resource type="PackedScene" path="res://scenes/tests/stage20_control_seat_test.tscn" id="2_stage20"]
+[ext_resource type="Script" path="res://scripts/grids/block_grid.gd" id="3_grid"]
+[ext_resource type="Script" path="res://scripts/grids/block_grid_presenter.gd" id="4_presenter"]
+[ext_resource type="Resource" path="res://data/grids/large_grid_profile.tres" id="5_large"]
+
+[node name="Stage21ThrusterTest" type="Node3D"]
+script = ExtResource("1_test")
+
+[node name="Stage20ControlSeatTest" parent="." instance=ExtResource("2_stage20")]
+
+[node name="ThrustCraft" type="RigidBody3D" parent="."]
+position = Vector3(-10, 1.25, 12)
+script = ExtResource("3_grid")
+grid_profile = ExtResource("5_large")
+
+[node name="BlockPresenter" type="Node3D" parent="ThrustCraft"]
+script = ExtResource("4_presenter")

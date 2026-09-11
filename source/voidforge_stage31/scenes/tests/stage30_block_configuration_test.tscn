@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/world/stage30_block_configuration.gd" id="1_stage30"]
+[ext_resource type="PackedScene" path="res://scenes/tests/stage29_ship_terminal_test.tscn" id="2_stage29"]
+
+[node name="Stage30BlockConfiguration" type="Node3D"]
+script = ExtResource("1_stage30")
+
+[node name="Stage29ShipTerminal" parent="." instance=ExtResource("2_stage29")]

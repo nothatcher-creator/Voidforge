@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/optimization/performance_monitor.gd" id="1_perf"]
+
+[node name="PerformanceOverlay" type="PanelContainer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -260.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 154.0
+grow_horizontal = 0
+mouse_filter = 2
+script = ExtResource("1_perf")
+
+[node name="StatsLabel" type="Label" parent="."]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 16
+text = "DEV PERFORMANCE\nFPS: --\nFrame: -- ms\nRenderer: --\nStage: 2"

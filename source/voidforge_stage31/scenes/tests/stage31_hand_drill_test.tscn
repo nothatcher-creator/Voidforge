@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/world/stage31_hand_drill.gd" id="1_stage31"]
+[ext_resource type="PackedScene" path="res://scenes/tests/stage30_block_configuration_test.tscn" id="2_stage30"]
+[ext_resource type="PackedScene" path="res://scenes/mining/drill_work_target.tscn" id="3_target"]
+
+[node name="Stage31HandDrill" type="Node3D"]
+script = ExtResource("1_stage31")
+
+[node name="Stage30BlockConfiguration" parent="." instance=ExtResource("2_stage30")]
+
+[node name="DrillWorkTarget" parent="." instance=ExtResource("3_target")]
+position = Vector3(0, 1.7, 6.6)

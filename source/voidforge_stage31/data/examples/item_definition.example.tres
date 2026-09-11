@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemDefinition" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/inventory/item_definition.gd" id="1_item"]
+
+[resource]
+script = ExtResource("1_item")
+id = &"example_component"
+display_name = "Example Component"
+description = "Schema example only. Not registered as gameplay content."
+category = &"component"
+tags = Array[StringName]([&"example"])
+unit_mass_kg = 0.5
+unit_volume_l = 0.25
+stack_limit = 100
